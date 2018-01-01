@@ -1,0 +1,82 @@
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/* button, */
+/* div,
+form,
+input {
+      margin: 10px;
+} */
+body {
+    background-color: #e0dfdf;
+}
+
+form, input, h4 {
+    margin-bottom: 10px;
+}
+
+button {
+    margin: 10px;
+    background-color: rgb(99, 150, 144);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:rgb(99, 150, 144); 
+    border:0 none;
+    cursor:pointer;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+input[type=text] {
+    padding:5px; 
+    border:2px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+}
+
+label {
+    font-weight: bold;
+}
+
+img {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.container {
+    width: 1500px;
+    margin: 20px auto 0 auto;
+    
+}
+
+#buttons-view {
+    margin-bottom: 20px;
+}
+
+#animals-view {
+    float: left;
+    width: 75%;
+}
+
+#form-container {
+    float: left;
+    width: 25%;
+}
+
+.imgItem {
+    float: left;
+}
+
