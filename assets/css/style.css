@@ -5,12 +5,6 @@
     box-sizing: border-box;
 }
 
-/* button, */
-/* div,
-form,
-input {
-      margin: 10px;
-} */
 body {
     background-color: #e0dfdf;
 }
@@ -21,7 +15,7 @@ form, input, h4 {
 
 button {
     margin: 10px;
-    background-color: rgb(99, 150, 144);
+    background-color: #639690;
     border: none;
     border-radius: 5px;
     padding: 5px 15px;
@@ -30,9 +24,19 @@ button {
     font-weight: bold;
 }
 
+button:hover {
+    background-color: #4e4d4d;
+    outline-style: none;
+}
+
+button:focus {
+    background-color: #4e4d4d;
+    outline-style: none;
+}
+
 input[type=submit] {
     padding:5px 15px; 
-    background:rgb(99, 150, 144); 
+    background:#639690; 
     border:0 none;
     cursor:pointer;
     border-radius: 5px;
@@ -45,9 +49,10 @@ input[type=text] {
     border:2px solid #ccc;
     border-radius: 5px;
     width: 250px;
+    margin-top: 5px;
 }
 
-label {
+form label {
     font-weight: bold;
 }
 
@@ -66,9 +71,10 @@ img {
     margin-bottom: 20px;
 }
 
-#animals-view {
+#sports-view {
     float: left;
     width: 75%;
+    min-height: 1px;
 }
 
 #form-container {

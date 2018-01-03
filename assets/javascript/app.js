@@ -1,11 +1,10 @@
-// Initial array of animals
-//var topics = ["Dog", "Cat", "Chicken"];
-var topics = ["football","baseball","hockey","soccer","Running", "skiing", "swimming"];
+// Initial array of topics
+var topics = ["football", "baseball", "basketball", "boxing", "cycling", "hockey", "soccer", "golf", "skiing", "surfing", "rugby"];
+// Array of objects to hold the current sport selected
 var objSports = [];
 
-// displayAnimalInfo function re-renders the HTML to display the appropriate content
-function displayAnimalInfo() {
-
+// displaySportInfo function re-renders the HTML to display the appropriate content
+function displaySportInfo() {
     var sport = $(this).attr("data-name");
     var limit = 10;
     objSports = [];
@@ -17,40 +16,29 @@ function displayAnimalInfo() {
         url: queryURL,
         method: "GET"
     }).done(function (response) {
-        var result = $("#animals-view");
+        var result = $("#sports-view");
         result.empty();
+        // Dynamically add the sport gifs to the page
         for (var i = 0; i < limit; i++) {
             var imageDiv = $("<div>")
             imageDiv.addClass("imgItem");
             var rating = $("<h4>").text("Rating: " + response.data[i].rating);
             var img = $("<img/>");
             img.attr("src", response.data[i].images.fixed_height_still.url);
-            //img.attr("src", response.data[i].images.original_still.url);
-            //img.attr("src", response.data[i].images.downsized_still.url);
-            //img.attr("width",350);
-            //img.attr("height",300);
             img.attr("data-name", response.data[i].id);
-            img.addClass("animalGif");
+            img.addClass("sportGif");
 
             imageDiv.append(rating);
             imageDiv.append(img);
             result.append(imageDiv);
 
-            //small size in KB
-            //objAnimals.push({ id: response.data[i].id, StillImage: response.data[i].images.downsized_still.url, GifImage: response.data[i].images.downsized_medium.url, animated: false })
-            //big size in KB
-            //objAnimals.push({ id: response.data[i].id, StillImage: response.data[i].images.original_still.url, GifImage: response.data[i].images.original.url, animated: false })
-            //fixed height
             objSports.push({ id: response.data[i].id, StillImage: response.data[i].images.fixed_height_still.url, GifImage: response.data[i].images.fixed_height.url, animated: false })
         }
-        //console.log(response);
-        //console.log(objAnimals);
-        renderButtons();
     });
 
 }
 
-//Animate or stop amimation on GIF
+//function to Animate or stop amimation on GIF
 function displayGif() {
     var gif = $(this).attr("data-name");
     var imageSource = $(this);
@@ -66,61 +54,40 @@ function displayGif() {
             }
         }
     }
-    // A way to pull just the image by ID
-    /* var image = $(this);
-    var queryURL = "https://api.giphy.com/v1/gifs/" + gif + "?api_key=dc6zaTOxFJmzC";
-
-    // Creates AJAX call for the specific animal image being clicked
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).done(function (response) {
-        
-        image.attr("src",response.data.images.original_still.url);
-            
-        console.log(response);
-    }); */
 }
 
-// Function for displaying animal data
+// Function for displaying sports data
 function renderButtons() {
 
-    // Deletes the animals prior to adding new animals
+    // Deletes the sports buttons prior to adding new sports
     // (this is necessary otherwise you will have repeat buttons)
     $("#buttons-view").empty();
-    // Loops through the array of movies
+    // Loops through the array of sports
     for (var i = 0; i < topics.length; i++) {
 
-        // Then dynamicaly generates buttons for each animal in the array
-        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+        // Then dynamicaly generates buttons for each sport in the array
         var a = $("<button>");
-        // Adds a class of animal to our button
-        a.addClass("animal");
-        // Added a data-attribute
+        a.addClass("sport");
         a.attr("data-name", topics[i]);
-        // Provided the initial button text
         a.text(topics[i]);
-        // Added the button to the buttons-view div
         $("#buttons-view").append(a);
     }
 }
 
-// This function handles events where the add animal button is clicked
-$("#add-animal").on("click", function (event) {
+// This function handles events where the add sports button is clicked
+$("#add-sport").on("click", function (event) {
     event.preventDefault();
-    // This line of code will grab the input from the textbox
-    var sport = $("#animal-input").val().trim();
 
-    // The animal from the textbox is then added to our array
-    topics.push(animal);
-
-    // Calling renderButtons which handles the processing of our animal array
-    renderButtons();
+    var sport = $("#sport-input").val().trim();
+    if (sport) {
+        topics.push(sport);
+        renderButtons();
+    }
 });
 
-// Adding click event listeners to all elements with a class of "animal"
-$(document).on("click", ".animal", displayAnimalInfo);
-$(document).on("click", ".animalGif", displayGif);
+// Add click event listeners to all elements with a class of sport
+$(document).on("click", ".sport", displaySportInfo);
+$(document).on("click", ".sportGif", displayGif);
 
 
 // Calling the renderButtons function to display the intial buttons
